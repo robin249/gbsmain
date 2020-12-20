@@ -1,0 +1,476 @@
+@media (max-width: 1199px) {
+    h1 {
+        font-size: 55px;
+        line-height: 75px;
+    }
+    h2 {
+        font-size: 34px;
+    }
+    h3 {
+        font-size: 27px;
+    }
+    h4 {
+        font-size: 23px;
+    }
+    h5 {
+        font-size: 18px;
+    }
+    h6 {
+        font-size: 17px;
+    }
+    p {
+        font-size: 14.5px;
+        line-height: 27.5px;
+    }
+    body {
+        font-size: 15px;
+    }
+    .main-menu nav ul li {
+        margin-left: 6px;
+    }
+    .main-menu nav ul li a {
+        font-size: 13.5px;
+        line-height: 60px;
+    }
+    .main-menu nav ul li i {
+        margin-left: 0;
+    }
+    .main-menu nav ul li ul.submenu li a {
+        font-size: 13px;
+    }
+    .banner-caption p {
+        font-size: 16px;
+        line-height: 27px;
+        margin: 0 0 20px;
+    }
+    .default-btn {
+        font-size: 13px;
+        padding: 16px 27px 16px;
+    }
+    .section-padding {
+        padding: 60px 0;
+    }
+    .right-side-text {
+        padding: 0 25px;
+    }
+    .section-title h2 {
+        line-height: 36px;
+        margin-bottom: 14px;
+    }
+    .boarding-text {
+        margin: 25px 0 0;
+        padding: 0 30px;
+    }
+    .news-form {
+        margin: 20px 0 0;
+    }
+    .gbs-input {
+        padding: 10px 20px;
+    }
+    footer {
+        padding: 50px 0 0;
+    }
+    .footer-title h4 {
+        font-size: 18px;
+        margin: 0 0 20px;
+        padding: 0 0 12px;
+    }
+    .footer-title h4::before {
+        height: 1px;
+    }
+    .footer-about p {
+        font-size: 13px;
+        line-height: 22px;
+    }
+    .footer-list ul li {
+        margin-bottom: 6px;
+    }
+    .footer-list ul li a {
+        font-size: 13px;
+    }
+    .footer-list ul li a:hover {
+        padding-left: 0px;
+    }
+    .single-f-contact-info span {
+        font-size: 13px;
+    }
+    .single-f-contact-info i {
+        font-size: 14px;
+    }
+    .follow-gbs-school {
+        margin: 10px 0 0;
+    }
+    .follow-gbs-school a {
+        width: 28px;
+        height: 28px;
+        margin-right: 5px;
+    }
+    .footer-widget {
+        margin: 0 0 40px;
+    }
+    .copyright {
+        font-size: 12.5px;
+        padding: 13px 0;
+    }
+    #scrollUp {
+        width: 40px;
+        height: 40px;
+        font-size: 19px;
+    }
+    .gbs-video-home {
+        margin-top: 60px;
+    }
+    .about-text {
+        padding-right: 0px;
+    }
+    .quick-navs li a {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+    .text-block {
+        padding: 20px 0;
+    }
+    .about-text blockquote {
+        padding: 25px 20px;
+        box-shadow: 4px 0 0 #3C78D3 inset;
+        margin: 15px 0;
+    }
+    .highlighted-text p {
+        font-size: 17px;
+    }
+    .gbs-facilities li:not(:last-child) {
+        margin-bottom: 50px;
+    }
+    .gbs-leadership-team ul {
+        justify-content: center;
+    }
+    .gbs-leadership-team ul li {
+        width: 50%;
+        margin-bottom: 30px;
+    }
+    .member-info small,
+    .member-info span {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 991px) {
+    h1 {
+        font-size: 50px;
+        line-height: normal;
+    }
+    h2 {
+        font-size: 31px;
+    }
+    h3 {
+        font-size: 25px;
+    }
+    h4 {
+        font-size: 21px;
+    }
+    h5 {
+        font-size: 17px;
+    }
+    h6 {
+        font-size: 16px;
+    }
+    p {
+        font-size: 14px;
+        line-height: 27px;
+    }
+    header .blue-header {
+        padding: 15px 0;
+    }
+    a.meanmenu-reveal {
+        color: #fff;
+        cursor: pointer;
+        display: block;
+        float: right;
+        font-size: 1px;
+        font-weight: 700;
+        height: 29px;
+        line-height: 22px;
+        padding: 4px 0 4px 5px;
+        position: absolute;
+        right: 0;
+        text-decoration: none;
+        top: -13px;
+        width: 32px;
+        border: 1px #fff solid;
+        border-radius: 3px;
+        padding: 5px;
+    }
+    a.meanclose {
+        padding: 3px 5px;
+    }
+    a.meanmenu-reveal span {
+        display: block;
+        background: #fff;
+        height: 2px;
+        margin-top: 3px;
+    }
+    #mobile-menu-active {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 250px;
+        background-color: #fff;
+        height: 100%;
+        padding: 20px 0;
+        z-index: 99;
+        box-shadow: 0 0 12px 10px rgba(0, 0, 0, 0.15);
+        transform: translateX(-320px);
+        -o-transform: translateX(-320px);
+        -ms-transform: translateX(-320px);
+        -moz-transform: translateX(-320px);
+        -webkit-transform: translateX(-320px);
+        transition: all 300ms ease-in-out 0s;
+        -o-transition: all 300ms ease-in-out 0s;
+        -ms-transition: all 300ms ease-in-out 0s;
+        -moz-transition: all 300ms ease-in-out 0s;
+        -webkit-transition: all 300ms ease-in-out 0s;
+    }
+    a.meanclose~#mobile-menu-active {
+        display: block !important;
+        overflow-x: hidden;
+        overflow-y: auto;
+        transform: translateX(0px);
+        -o-transform: translateX(0px);
+        -ms-transform: translateX(0px);
+        -moz-transform: translateX(0px);
+        -webkit-transform: translateX(0px);
+    }
+    a.meanclose~#mobile-menu-active>ul>li {
+        width: 100%;
+        margin: 0;
+    }
+    .main-menu nav ul li i {
+        padding: 10px;
+        z-index: 1;
+        position: relative;
+        cursor: pointer;
+    }
+    a.meanclose~#mobile-menu-active>ul>li>a {
+        padding: 10px 15px;
+        display: inline-block;
+        width: calc(100% - 33px);
+        line-height: normal;
+        color: #333;
+    }
+    header .blue-header .main-menu nav ul li i::before,
+    header .blue-header .main-menu nav ul li ul.submenu li a {
+        color: #333;
+    }
+    header .blue-header .main-menu nav ul li ul.submenu li a:hover {
+        color: #fff;
+    }
+    .main-menu nav ul li ul.submenu {
+        position: relative;
+        top: 0;
+        display: none;
+        transform: none;
+    }
+    .main-menu nav ul li:hover>ul.submenu,
+    .main-menu nav ul li:focus>ul.submenu {
+        visibility: hidden;
+        opacity: 0;
+        transform: none;
+    }
+    .main-menu nav ul li i.closed~ul.submenu {
+        visibility: hidden;
+        opacity: 0;
+    }
+    .main-menu nav ul li i.open~ul.submenu {
+        visibility: visible;
+        opacity: 1;
+        display: block;
+        width: 100%;
+        box-shadow: none;
+        background-color: rgba(0, 0, 0, 0.08);
+    }
+    .section-padding {
+        padding: 45px 0;
+    }
+    .right-side-text {
+        padding: 0;
+    }
+    .section-title {
+        margin-top: 25px;
+    }
+    .sign-up-news .section-title {
+        margin-top: 0;
+    }
+    .take-tour .row {
+        flex-direction: column-reverse;
+    }
+    .boarding-text {
+        margin: 15px 0 0;
+        padding: 0;
+    }
+    .input-col {
+        min-width: 37%;
+    }
+    .main-menu nav ul li i.open {
+        transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        transition: all 300ms ease-in-out 0s;
+        -o-transition: all 300ms ease-in-out 0s;
+        -ms-transition: all 300ms ease-in-out 0s;
+        -moz-transition: all 300ms ease-in-out 0s;
+        -webkit-transition: all 300ms ease-in-out 0s;
+    }
+    .gbs-video-home {
+        margin-top: 50px;
+    }
+    .gbs-video iframe {
+        min-height: 270px;
+    }
+    .enrol-action {
+        margin-top: 10px;
+    }
+    .default-btn {
+        padding: 14px 27px 14px;
+    }
+    .tour-text h3 {
+        margin-bottom: 2px;
+        line-height: 1;
+    }
+    .tour-categories {
+        padding-top: 15px;
+    }
+    .facility-img img {
+        margin-bottom: 20px;
+    }
+    .gbs-facilities li:nth-of-type(even) .row {
+        flex-direction: column-reverse;
+    }
+    .member-info small,
+    .member-info span {
+        font-size: 14px;
+    }
+    .gbs-leadership-team ul li {
+        margin-bottom: 25px;
+    }
+}
+
+@media (max-width: 767px) {
+    h1 {
+        font-size: 37px;
+        line-height: 1.2;
+    }
+    h2 {
+        font-size: 27px;
+    }
+    h3 {
+        font-size: 23px;
+    }
+    h4 {
+        font-size: 19px;
+    }
+    h5 {
+        font-size: 16px;
+    }
+    h6 {
+        font-size: 15px;
+    }
+    .gbs-logo img {
+        min-width: 150px;
+    }
+    .video-home {
+        display: none;
+    }
+    .banner-content {
+        position: relative;
+        background-image: url("../images/gbs-school-video.jpg");
+        background-size: cover;
+        background-position: center;
+        padding: 25px 0 35px;
+    }
+    .banner-content::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    .sign-up-news {
+        background-position: center bottom;
+    }
+    .quick-links {
+        max-width: 37px;
+    }
+    .quick-links span {
+        display: none;
+    }
+    .banner-caption p {
+        width: 100%;
+        font-size: 15px;
+        line-height: 23px;
+        margin-bottom: 15px;
+    }
+    .default-btn {
+        padding: 14px 20px;
+    }
+    .video-btn img {
+        max-width: 45px;
+    }
+    .section-title h2 {
+        margin-bottom: 0px;
+    }
+    .section-padding {
+        padding: 30px 0;
+    }
+    .inner-banner-content {
+        background-image: url("../images/about-banner.jpg");
+        padding: 45px 0;
+    }
+    .custom-breadcrumb li,
+    .custom-breadcrumb li.active,
+    .custom-breadcrumb li a {
+        font-size: 13px;
+    }
+    .gbs-top-section .row {
+        flex-direction: column-reverse;
+    }
+    .gbs-top-section .sticky-top {
+        padding-bottom: 35px;
+    }
+    .enrol-now {
+        margin-bottom: 20px;
+    }
+    .tour-text {
+        padding: 15px 15px;
+    }
+    .tour-categories {
+        padding-top: 0px;
+    }
+    .highlighted-text p {
+        font-size: 16px;
+    }
+    .gbs-facilities li .row {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 575px) {
+    .input-col {
+        min-width: 100%;
+    }
+    .gbs-input {
+        padding: 0 20px;
+        font-size: 13px;
+        height: 41px;
+    }
+}
+
+@media (max-width:500px) {
+    .gbs-leadership-team ul li {
+        width: 100%;
+        text-align: center;
+    }
+}
