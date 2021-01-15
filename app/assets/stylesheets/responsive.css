@@ -152,6 +152,15 @@
     .member-info span {
         font-size: 15px;
     }
+    .policy-name {
+        padding: 15px;
+    }
+    .policy-download {
+        padding: 8px 15px;
+    }
+    .videos-section {
+        margin-bottom: 50px;
+    }
 }
 
 @media (max-width: 991px) {
@@ -354,6 +363,19 @@
     .gbs-leadership-team ul li {
         margin-bottom: 25px;
     }
+    .videos-section {
+        margin-bottom: 15px;
+    }
+    .video-action {
+        font-size: 16px;
+    }
+    .sports-activities ul {
+        margin: 12px 0 0;
+    }
+    .sports-activities li {
+        width: 50%;
+        margin: 8px 0;
+    }
 }
 
 @media (max-width: 767px) {
@@ -455,6 +477,39 @@
     .gbs-facilities li .row {
         flex-direction: column;
     }
+    .policy-name {
+        font-size: 14px;
+        width: calc(100% - 45px);
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    .policy-download {
+        font-size: 13px;
+    }
+    .policy-download img {
+        height: 21px;
+    }
+    .policy-download {
+        overflow: hidden;
+        text-indent: -9999px;
+        width: 45px;
+        background-image: url("../images/download.svg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 18px;
+    }
+    .policy-download span {
+        display: none;
+    }
+    .video-view iframe {
+        min-height: 210px;
+    }
+    .sports-activities li {
+        font-size: 14px;
+        background-size: 10px;
+        padding-left: 21px;
+    }
 }
 
 @media (max-width: 575px) {
@@ -465,6 +520,9 @@
         padding: 0 20px;
         font-size: 13px;
         height: 41px;
+    }
+    .sports-activities li {
+        width: 100%;
     }
 }
 

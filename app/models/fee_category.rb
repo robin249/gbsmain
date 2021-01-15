@@ -1,0 +1,2 @@
+class FeeCategory < ApplicationRecord
+end

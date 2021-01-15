@@ -6,7 +6,9 @@
 
         <div class="col-lg-2 col-md-6 col-4">
           <div class="gbs-logo">
-            <a href="index.html"><%= image_tag("white-logo.png", alt: "") %></a>
+            <%= link_to root_path do %>
+              <%= image_tag("GBS-logo.png", alt: "") %>
+            <% end %>
           </div>
         </div>
         <!-- @logo end -->
@@ -21,25 +23,41 @@
                   <li><a href="about-us.html">Our School</a>
                     <i class="fa fa-angle-down more closed"></i>
                     <ul class="submenu">
-                      <li><a href="course.html">Principal’s Welcome</a></li>
-                      <li><a href="event.html">Why GBS?</a></li>
-                      <li><a href="shop.html">Our Philosophy</a></li>
-                      <li><a href="course-details.html">History</a></li>
-                      <li><a href="event-details.html">Location &amp; Facilities</a></li>
-                      <li><a href="cart.html">Leadership Team</a></li>
-                      <li><a href="wishlist.html">School Policies</a></li>
-                      <li><a href="login-register.html">Video Gallery</a></li>
+                      <li>
+                        <%= link_to "Principal’s Welcome", principals_welcome_path %>
+                      </li>
+                      <li>
+                        <%= link_to 'Why GBS?', about_us_path %>
+                      </li>
+                      <li>
+                        <%= link_to 'Our Philosophy', our_philosophy_path %>
+                      </li>
+                      <li>
+                        <%= link_to 'History', history_path %>
+                      </li>
+                      <li>
+                        <%= link_to 'Location &amp; Facilities'.html_safe, location_and_facilities_path %>
+                      </li>
+                      <li>
+                        <%= link_to 'Leadership Team', leadership_team_path %>
+                      </li>
+                      <li>
+                        <%= link_to 'School Policies', school_policies_path %>
+                      </li>
+                      <li>
+                        <%= link_to 'Video Gallery', video_gallery_path %>
+                      </li>
                     </ul>
                   </li>
 
                   <li><a href="about-us.html">Beyond The Classroom</a>
                     <i class="fa fa-angle-down more closed"></i>
                     <ul class="submenu">
-                      <li><a href="course.html">Sport</a></li>
-                      <li><a href="course.html">Curriculum</a></li>
-                      <li><a href="course.html">Arts</a></li>
-                      <li><a href="course.html">Exchange Program</a></li>
-                      <li><a href="course.html">Study Tours</a></li>
+                      <li><%= link_to 'Sport', sport_path %></li>
+                      <li><%= link_to 'Curriculum', curriculum_path %></li>
+                      <li><%= link_to 'Arts', art_path %></li>
+                      <li><%= link_to 'Exchange Program', exchange_program_path %></li>
+                      <li><%= link_to 'Study Tours', study_tour_path %></li>
 
                     </ul>
                   </li>

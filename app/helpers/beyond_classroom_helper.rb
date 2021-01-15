@@ -1,0 +1,2 @@
+module BeyondClassroomHelper
+end

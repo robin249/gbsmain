@@ -62,6 +62,10 @@ p {
     font-weight: 300;
 }
 
+strong {
+    font-weight: 600;
+}
+
 ul,
 ol,
 li {
@@ -116,6 +120,17 @@ header.sticky {
 
 header .blue-header {
     background-color: #2d66a0;
+}
+
+.gbs-logo {
+    position: absolute;
+    left: 0;
+    top: -20px;
+    padding: 0 15px;
+}
+
+.gbs-logo img {
+    height: 99px;
 }
 
 .header-top {
@@ -209,7 +224,7 @@ header .blue-header {
 
 .main-menu nav ul li {
     display: inline-block;
-    margin-left: 16px;
+    margin-left: 15px;
     position: relative;
 }
 
@@ -1114,4 +1129,107 @@ footer {
 .member-info span {
     font-size: 16px;
     opacity: 0.8;
+}
+
+.policies-list li {
+    background-color: rgba(0, 0, 0, 0.04);
+    border: 1px rgba(0, 0, 0, 0.15) solid;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.policy-name {
+    font-weight: 500;
+    font-size: 16px;
+    opacity: 0.8;
+    padding: 20px;
+}
+
+.policy-download {
+    display: flex;
+    background-color: #3C78D3;
+    align-items: center;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.policy-download:hover {
+    text-decoration: none;
+    background-color: #2d66a0;
+    color: #fff;
+}
+
+.policy-download img {
+    height: 25px;
+    margin-right: 10px;
+}
+
+.section-heading h3 {
+    font-weight: 400;
+    color: #3C78D3;
+}
+
+.videos-section {
+    margin-bottom: 80px;
+}
+
+.videos-section:last-child {
+    margin-bottom: 0;
+}
+
+.video-items {
+    margin-bottom: 30px;
+}
+
+.video-view iframe {
+    width: 100%;
+    min-height: 240px;
+}
+
+.video-action {
+    margin: 0 0 10px;
+    font-weight: 300;
+    font-size: 19px;
+}
+
+.video-action a:hover {
+    text-decoration: none;
+    color: #2d66a0;
+}
+
+.sports-activities h6 {
+    font-weight: 600;
+    color: #3C78D3;
+}
+
+.sports-activities ul {
+    margin: 15px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sports-activities li {
+    background-image: url("check.svg");
+    background-repeat: no-repeat;
+    background-position: 0 center;
+    background-size: 12px;
+    padding-left: 25px;
+    margin: 12px 0;
+    width: 33.333%;
+}
+
+.sub-blocks h5 {
+    font-weight: 600;
+}
+
+.text-block ol li {
+    color: #4f4f4f;
+    font-weight: 300;
+    margin: 10px 0;
+    list-style-type: disc;
+    list-style-position: inside;
 }
