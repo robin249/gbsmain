@@ -15,5 +15,6 @@ module Gbs
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+    config.hosts << "aa46-2401-4900-30bc-85fb-a0b0-904d-cecd-c9d8.ngrok.io"
   end
 end
