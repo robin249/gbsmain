@@ -94,6 +94,17 @@ GEM
       mini_mime (>= 0.1.3)
       ssrf_filter (~> 1.0)
     childprocess (3.0.0)
+    chosen-rails (1.9.0)
+      coffee-rails (>= 3.2)
+      railties (>= 3.0)
+      sassc-rails (>= 2.1.2)
+    coffee-rails (5.0.0)
+      coffee-script (>= 2.2.0)
+      railties (>= 5.2.0)
+    coffee-script (2.4.1)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.12.2)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
     devise (4.7.3)
@@ -103,6 +114,7 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.10.0)
+    execjs (2.8.1)
     ffi (1.13.1)
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
@@ -278,6 +290,7 @@ DEPENDENCIES
   cancancan (~> 3.2)
   capybara (>= 2.15)
   carrierwave
+  chosen-rails
   devise
   jbuilder (~> 2.7)
   listen (~> 3.2)

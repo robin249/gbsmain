@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_30_160616) do
+ActiveRecord::Schema.define(version: 2022_01_03_153542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,20 @@ ActiveRecord::Schema.define(version: 2021_12_30_160616) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  end
+
+  create_table "class_fees", force: :cascade do |t|
+    t.bigint "sclass_id", null: false
+    t.bigint "fee_category_id", null: false
+    t.float "amount", default: 0.0
+    t.boolean "active", default: true
+    t.jsonb "options", default: {}
+    t.integer "created_by_id"
+    t.integer "updated_by_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fee_category_id"], name: "index_class_fees_on_fee_category_id"
+    t.index ["sclass_id"], name: "index_class_fees_on_sclass_id"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -81,6 +95,7 @@ ActiveRecord::Schema.define(version: 2021_12_30_160616) do
     t.bigint "institute_id"
     t.integer "created_by_id"
     t.integer "updated_by_id"
+    t.integer "session_duration", default: 0, null: false
     t.index ["institute_id"], name: "index_sclasses_on_institute_id"
     t.index ["name"], name: "index_sclasses_on_name"
   end
@@ -93,8 +108,46 @@ ActiveRecord::Schema.define(version: 2021_12_30_160616) do
     t.jsonb "options", default: {}
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "created_by_id"
+    t.integer "updated_by_id"
     t.index ["document_id"], name: "index_student_documents_on_document_id"
     t.index ["student_id"], name: "index_student_documents_on_student_id"
+  end
+
+  create_table "student_fees", force: :cascade do |t|
+    t.bigint "sclass_id", null: false
+    t.bigint "student_id", null: false
+    t.bigint "fee_category_id", null: false
+    t.float "amount", default: 0.0
+    t.float "concession", default: 0.0
+    t.string "session_duration", comment: "like January-May or June-December, etc"
+    t.string "session_year", comment: "like 2020-2021"
+    t.boolean "active", default: true
+    t.jsonb "options", default: {}
+    t.integer "created_by_id"
+    t.integer "updated_by_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fee_category_id"], name: "index_student_fees_on_fee_category_id"
+    t.index ["sclass_id"], name: "index_student_fees_on_sclass_id"
+    t.index ["student_id"], name: "index_student_fees_on_student_id"
+  end
+
+  create_table "student_subjects", force: :cascade do |t|
+    t.bigint "sclass_id", null: false
+    t.bigint "student_id", null: false
+    t.bigint "subject_id", null: false
+    t.boolean "active", default: true
+    t.string "session_duration", comment: "like January-May or June-December, etc"
+    t.string "session_year", comment: "like 2020-2021"
+    t.jsonb "options", default: {}
+    t.integer "created_by_id"
+    t.integer "updated_by_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["sclass_id"], name: "index_student_subjects_on_sclass_id"
+    t.index ["student_id"], name: "index_student_subjects_on_student_id"
+    t.index ["subject_id"], name: "index_student_subjects_on_subject_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -168,11 +221,19 @@ ActiveRecord::Schema.define(version: 2021_12_30_160616) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "class_fees", "fee_categories"
+  add_foreign_key "class_fees", "sclasses"
   add_foreign_key "documents", "institutes"
   add_foreign_key "fee_categories", "institutes"
   add_foreign_key "sclasses", "institutes"
   add_foreign_key "student_documents", "documents"
   add_foreign_key "student_documents", "students"
+  add_foreign_key "student_fees", "fee_categories"
+  add_foreign_key "student_fees", "sclasses"
+  add_foreign_key "student_fees", "students"
+  add_foreign_key "student_subjects", "sclasses"
+  add_foreign_key "student_subjects", "students"
+  add_foreign_key "student_subjects", "subjects"
   add_foreign_key "students", "institutes"
   add_foreign_key "students", "sclasses"
   add_foreign_key "subjects", "institutes"

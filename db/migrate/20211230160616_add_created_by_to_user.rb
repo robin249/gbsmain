@@ -20,5 +20,8 @@ class AddCreatedByToUser < ActiveRecord::Migration[6.0]
 
     add_column :institutes, :created_by_id, :integer
     add_column :institutes, :updated_by_id, :integer
+
+    add_column :student_documents, :created_by_id, :integer
+    add_column :student_documents, :updated_by_id, :integer
   end
 end
