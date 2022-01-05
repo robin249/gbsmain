@@ -18,8 +18,8 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: pguser
-  password: pgpassword
+  username: postgres
+  password: HTvDgD343F4FD45
   host: localhost
   port: 5432
 
@@ -83,5 +83,5 @@ test:
 production:
   <<: *default
   database: gbs_production
-  username: gbs
-  password: <%= ENV['GBS_DATABASE_PASSWORD'] %>
+#  username: gbs
+#  password: <%= ENV['GBS_DATABASE_PASSWORD'] %>
