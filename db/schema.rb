@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_03_153542) do
+ActiveRecord::Schema.define(version: 2022_01_15_140707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 2022_01_03_153542) do
     t.integer "created_by_id"
     t.integer "updated_by_id"
     t.integer "session_duration", default: 0, null: false
+    t.integer "session_time", default: 12, null: false
     t.index ["institute_id"], name: "index_sclasses_on_institute_id"
     t.index ["name"], name: "index_sclasses_on_name"
   end
@@ -128,9 +129,44 @@ ActiveRecord::Schema.define(version: 2022_01_03_153542) do
     t.integer "updated_by_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "total_months", default: 1
     t.index ["fee_category_id"], name: "index_student_fees_on_fee_category_id"
     t.index ["sclass_id"], name: "index_student_fees_on_sclass_id"
     t.index ["student_id"], name: "index_student_fees_on_student_id"
+  end
+
+  create_table "student_payment_details", force: :cascade do |t|
+    t.bigint "student_payment_id", null: false
+    t.bigint "student_fee_id", null: false
+    t.float "amount"
+    t.text "remarks"
+    t.integer "status", default: 0, null: false, comment: "pending, complete"
+    t.boolean "is_deleted", default: false
+    t.jsonb "options", default: {}
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["student_fee_id"], name: "index_student_payment_details_on_student_fee_id"
+    t.index ["student_payment_id"], name: "index_student_payment_details_on_student_payment_id"
+  end
+
+  create_table "student_payments", force: :cascade do |t|
+    t.bigint "sclass_id", null: false
+    t.bigint "student_id", null: false
+    t.string "txn_id"
+    t.float "total_amount"
+    t.string "session_duration", comment: "like January-May or June-December, etc"
+    t.string "session_year", comment: "like 2020-2021"
+    t.integer "status", default: 0, null: false, comment: "pending, complete"
+    t.integer "payment_mode", default: 0, null: false, comment: "cash, cheque, upid"
+    t.text "remarks"
+    t.boolean "is_deleted", default: false
+    t.jsonb "options", default: {}
+    t.integer "created_by_id"
+    t.integer "updated_by_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["sclass_id"], name: "index_student_payments_on_sclass_id"
+    t.index ["student_id"], name: "index_student_payments_on_student_id"
   end
 
   create_table "student_subjects", force: :cascade do |t|
@@ -231,6 +267,10 @@ ActiveRecord::Schema.define(version: 2022_01_03_153542) do
   add_foreign_key "student_fees", "fee_categories"
   add_foreign_key "student_fees", "sclasses"
   add_foreign_key "student_fees", "students"
+  add_foreign_key "student_payment_details", "student_fees"
+  add_foreign_key "student_payment_details", "student_payments"
+  add_foreign_key "student_payments", "sclasses"
+  add_foreign_key "student_payments", "students"
   add_foreign_key "student_subjects", "sclasses"
   add_foreign_key "student_subjects", "students"
   add_foreign_key "student_subjects", "subjects"

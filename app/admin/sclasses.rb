@@ -1,6 +1,6 @@
 ActiveAdmin.register Sclass do
   menu label: 'Classes'
-  permit_params :institute_id, :name, :description, :session_duration, :active
+  permit_params :institute_id, :name, :description, :session_duration, :session_time, :active
 
   # config.batch_actions = false
   # actions :all, :except => [:new, :destroy, :edit]
@@ -10,6 +10,7 @@ ActiveAdmin.register Sclass do
   filter :name
   filter :active
   filter :session_duration
+  filter :session_time
   filter :created_at
 
   index do
@@ -19,6 +20,7 @@ ActiveAdmin.register Sclass do
     column :name
     column :subjects
     column :session_duration
+    column :session_time
     column :active
     column :created_at
     actions
@@ -30,6 +32,7 @@ ActiveAdmin.register Sclass do
       f.input :name
       f.input :description
       f.input :session_duration
+      f.input :session_time
       f.input :active
     end
     f.actions
@@ -42,6 +45,7 @@ ActiveAdmin.register Sclass do
       row :name
       row :description
       row :session_duration
+      row :session_time
       row :active
       row :subjects
       row :created_at
@@ -115,12 +119,15 @@ ActiveAdmin.register Sclass do
     class_fees = sclass.class_fees
     students = sclass.students
     class_fees.any? && class_fees.each do |class_fee|
+      total_months = 1
+      total_months = Sclass.session_times[sclass.session_time] if (FeeCategory.billing_terms[class_fee.fee_category.billing_term] === 1)
       fee_category_id = class_fee.fee_category.id
       students.any? && students.each do |student|
         student_fee = StudentFee.where(sclass_id: params[:id], student_id: student.id, fee_category_id: fee_category_id).first_or_initialize
         student_fee.amount = class_fee.amount
         student_fee.active = class_fee.active
         student_fee.session_duration = sclass.session_duration
+        student_fee.total_months = total_months
         student_fee.session_year = '2020-2021'
         student_fee.save!
       end

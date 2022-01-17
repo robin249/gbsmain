@@ -11,4 +11,5 @@ class Sclass < ApplicationRecord
   belongs_to :updated_by, class_name: "User", foreign_key: "updated_by_id", optional: true
 
   enum session_duration: { 'April-March': 0, 'January-June': 1, 'July-December': 2}
+  enum session_time: { '12 Months': 12, '6 Months': 6}
 end

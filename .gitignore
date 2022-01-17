@@ -28,7 +28,11 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# Environment specific config
+/config/database.yml
+
 /public/packs
+/public/uploads
 /public/packs-test
 /node_modules
 /yarn-error.log

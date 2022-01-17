@@ -69,6 +69,7 @@ ActiveAdmin.register Student do
       row :permanent_address
       row :residential_address
       row :active
+      row :balance do |student| "Rs #{student.balance}" end
       row :created_at
       row :updated_at
       row :created_by
@@ -193,7 +194,7 @@ ActiveAdmin.register Student do
             if student.student_fees.any?
               student.student_fees.order(created_at: :asc).each do |student_fee|
                 div class: "control-group", style: "display: flex;" do
-                  div class: "form-group", style: "display: grid; width: 25%;" do
+                  div class: "form-group", style: "display: grid; width: 20%;" do
                     label class: "label", style: "float: left; font-weight: bold; color: #5E6469;" do
                       'Fee Category' + (student_fee.fee_category.is_optional_to_student? ? " (Optional)" : '')
                     end
@@ -201,13 +202,19 @@ ActiveAdmin.register Student do
                       student_fee.fee_category.name
                     end
                   end
-                  div class: "form-group", style: "display: grid; width: 20%;" do
+                  div class: "form-group", style: "display: grid; width: 15%;" do
                     label class: "label", style: "float: left; font-weight: bold; color: #5E6469;" do
                       'Session'
                     end
                     label class: "label" do
                       "#{student_fee.session_duration} (#{student_fee.session_year})"
                     end
+                  end
+                  div class: "form-group", style: "display: grid; width: 15%;" do
+                    label class: "label", style: "float: left; font-weight: bold; color: #5E6469;" do
+                      'Total Times (during session) '
+                    end
+                    select name: "total_months[#{student_fee.id}]", :style => "width: 30%;", disabled: !student_fee.fee_category.is_optional_to_student, :collection => content_tag(:option,'select one...',:value=>student_fee.total_months)+options_for_select((1..12).step(1), student_fee.total_months)
                   end
                   div class: "form-group", style: "display: grid; width: 20%;" do
                     label class: "label", style: "width: 20%; float: left; font-weight: bold; color: #5E6469;" do
@@ -239,6 +246,131 @@ ActiveAdmin.register Student do
         end
       end
 
+      div class: "fee panel" do
+        h3 do
+          "Student Payment (#{student.student_fees.count})"
+        end
+        div class: "panel_contents" do
+          form class: 'add_payment', action: "/admin/students/add_payment", enctype: 'multipart/form-data', method: 'post', style: "margin-top: 20px;" do |f|
+            f.input :name => 'authenticity_token', :type => :hidden, :value => form_authenticity_token.to_s
+            f.input :id, type: :hidden, name: :id, value: params[:id]
+            if student.student_fees.any?
+              student.student_fees.order(created_at: :asc).each do |student_fee|
+                div class: "control-group", style: "display: flex;" do
+                  div class: "form-group", style: "display: grid; width: 15%;" do
+                    label class: "label", style: "float: left; font-weight: bold; color: #5E6469;" do
+                      'Fee Category' + (student_fee.fee_category.is_optional_to_student? ? " (Optional)" : '')
+                    end
+                    label class: "label" do
+                      student_fee.fee_category.name
+                    end
+                  end
+                  div class: "form-group", style: "display: grid; width: 15%;" do
+                    label class: "label", style: "float: left; font-weight: bold; color: #5E6469;" do
+                      'Session'
+                    end
+                    label class: "label" do
+                      "#{student_fee.session_duration} (#{student_fee.session_year})"
+                    end
+                  end
+                  div class: "form-group", style: "display: grid; width: 10%;" do
+                    label class: "label", style: "width: 20%; float: left; font-weight: bold; color: #5E6469;" do
+                      'Fee '
+                    end
+                    label class: "label" do
+                      "#{student_fee.amount} * #{student_fee.total_months}"
+                    end
+                  end
+                  div class: "form-group", style: "display: grid; width: 10%;" do
+                    label class: "label", style: "width: 20%; float: left; font-weight: bold; color: #5E6469;" do
+                      'Concession '
+                    end
+                    label class: "label" do
+                      "#{student_fee.concession} * #{student_fee.total_months}"
+                    end
+                  end
+                  div class: "form-group", style: "display: grid; width: 10%;" do
+                    label class: "label", style: "width: 20%; float: left; font-weight: bold; color: #5E6469;" do
+                      'Balance '
+                    end
+                    label class: "label" do
+                      student_fee.fee_category_balance
+                    end
+                  end
+                  div class: "form-group", style: "display: grid; width: 20%;" do
+                    label class: "label", style: "float: left; font-weight: bold; color: #5E6469;" do
+                      'Fee to be paid '
+                    end
+                    input type: "text", name: "amount[#{student_fee.id}]"
+                  end
+                  div class: "form-group", style: "display: grid; width: 20%;" do
+                    label class: "label", style: "width: 20%; float: left; font-weight: bold; color: #5E6469;" do
+                      'Remarks '
+                    end
+                    input type: "text", name: "remarks[#{student_fee.id}]"
+                  end
+                end
+                div do
+                  hr
+                  br
+                end
+              end
+            end
+
+            div class: "control-group", style: "display: flex;" do
+              div class: "form-group", style: "display: grid; width: 15%;" do
+                '--'
+              end
+              div class: "form-group", style: "display: grid; width: 15%;" do
+                '--'
+              end
+              div class: "form-group", style: "display: grid; width: 10%;" do
+                label class: "label", style: "float: left; font-weight: bold; color: #5E6469;" do
+                  student.total_fee
+                end
+              end
+              div class: "form-group", style: "display: grid; width: 10%;" do
+                label class: "label", style: "float: left; font-weight: bold; color: #5E6469;" do
+                  student.total_concession
+                end
+              end
+              div class: "form-group", style: "display: grid; width: 10%;" do
+                label class: "label", style: "float: left; font-weight: bold; color: #5E6469;" do
+                  student.balance
+                end
+              end
+              div class: "form-group", style: "display: grid; width: 20%;" do
+                label class: "label", style: "float: left; font-weight: bold; color: #5E6469;", id: "total_fee_paid" do
+                  12000
+                end
+              end
+              div class: "form-group", style: "display: grid; width: 20%;" do
+                '--'
+              end
+            end
+            div do
+              br
+            end
+
+            div class: "form-group", style: "display: grid; width: 20%; margin-bottom: 20px;" do
+              label class: "label", style: "float: left; font-weight: bold; color: #5E6469;" do
+                'Mode of Payment '
+              end
+              select name: 'student_payment[payment_mode]', :collection => content_tag(:option,'select one...',:value=>"")+options_for_select(StudentPayment.payment_modes)
+            end
+
+            div class: "form-group", style: "display: grid; width: 40%; margin-bottom: 20px;" do
+              label class: "label", style: "float: left; font-weight: bold; color: #5E6469;" do
+                'Remarks '
+              end
+              textarea name: "student_payment[remarks]", cols: 100, rows: 4
+            end
+
+            f.input type: :submit, value: 'Add Payment'
+          end
+        end
+      end
+
     end
   end
 
@@ -254,7 +386,7 @@ ActiveAdmin.register Student do
       params[:concession].each do |key, value|
         @student_fee = StudentFee.find_by_id(key)
         if @student_fee.fee_category.is_optional_to_student
-          @student_fee.update(amount: params[:amount][key], concession: params[:concession][key], active: (params[:active].present? && params[:active][key].present?) ? 1 : 0) if @student_fee.present?
+          @student_fee.update(total_months: params[:total_months][key], amount: params[:amount][key], concession: params[:concession][key], active: (params[:active].present? && params[:active][key].present?) ? 1 : 0) if @student_fee.present?
         else
           @student_fee.update(concession: params[:concession][key]) if @student_fee.present?
         end
@@ -270,5 +402,25 @@ ActiveAdmin.register Student do
       @student_subject.update(active: (params[:active].present? && params[:active][key].present?) ? 1 : 0) if @student_subject.present? && @student_subject.subject.is_optional_to_student
     end
     redirect_to admin_student_path(student), notice: "Subjects has been updated successfully."
+  end
+
+  collection_action :add_payment, method: :post do
+    student = Student.find_by_id(params[:id])
+    puts params
+    total_amount = params[:amount].to_unsafe_h.map {|s| s[1].to_f}.reduce(0, :+)
+    if params[:amount].present? && total_amount > 0
+      payment_mode = params[:student_payment][:payment_mode]
+      payment_status = (payment_mode == '0') ? 1 : 0
+
+      student_payment = StudentPayment.new(sclass: student.sclass, student: student, total_amount: total_amount, session_duration: student.sclass.session_duration, session_year: Student::SESSION_YEAR, status: payment_status, payment_mode: payment_mode.to_i, remarks: params[:student_payment][:remarks])
+      if student_payment.save
+        params[:amount].each do |key, value|
+          if value.present? && value.to_f > 0
+            StudentPaymentDetail.create(student_payment_id: student_payment.id, student_fee_id: key, amount: value, remarks: params[:remarks][key], status: payment_status)
+          end
+        end
+      end
+    end
+    redirect_to admin_student_path(student), notice: "Payment has been added successfully."
   end
 end
