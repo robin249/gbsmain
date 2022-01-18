@@ -31,3 +31,4 @@ jobs:
           bundle install
           sudo service apache2 restart
           sudo service apache2 status
+
